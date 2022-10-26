@@ -1,12 +1,12 @@
 import Header from './Components/MainComponents/Header';
-import SummaryText from './Components/MainComponents/SummaryText';
+import SummaryAndMenuList from './Components/MainComponents/SummaryAndMenuList';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <SummaryText/>
+      <SummaryAndMenuList/>
     </div>
   );
 }
