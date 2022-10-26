@@ -1,20 +1,23 @@
 import React from 'react'
+import CartIcon from '../Cart/CartIcon'
 import classes from './Header.module.css'
 import FoodMeals from '../../Assets/meals.jpg'
+
 
 function Header() {
   return (
     <React.Fragment>
     <header className={classes.headerCMP}>
         <div className={classes.siteName}>
-            <h1><b>ReactMeals</b></h1>
+          <a href='#'><h1>ReactMeals</h1></a>  
         </div>
 
-        <div className={classes.cartData}>
             <button className={classes.cartBTN}>
-             your cart &nbsp; <strong className={classes.cartNUM}>0</strong>
+            <span className={classes.carticon}><CartIcon/></span>
+            <span className={classes.cartText}>Your Cart</span>
+            <span className={classes.cartNUM}><strong>0</strong></span>
             </button>
-        </div>
+    
     </header>
 
     <div className={classes.headerIMG}>
