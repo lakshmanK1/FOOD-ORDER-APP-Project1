@@ -1,14 +1,20 @@
 import React from 'react'
+import Card from '../UI/Card'
+import classes from './MealList.module.css'
+import MainMealsItemList from './MainMealsItemList'
 
 function MealList(props) {
   return (
-    <div>
+    <section className={classes.meals}>
+    <Card>
         <ul>
             {props.menuItems.map((food)=>(
-                <li key={food.id}>{food.name}</li>
-            ))}
+                <MainMealsItemList key={food.id} name={food.name} 
+                description={food.description} price={food.price}/>
+             ))}
         </ul>
-    </div>
+    </Card>
+    </section>
   )
 }
 
