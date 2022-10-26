@@ -1,0 +1,44 @@
+.headerCMP{
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em 1em;
+    display: flex;
+    justify-content: space-between;
+    background-color:#8E3200;
+}
+.siteName h1{
+    font-size: 1.5em;
+    margin: 0.6em 0;
+    display: inline-block;
+    color: white;
+}
+.cartBTN{
+  background-color: #3C4048; /* Green */
+  border: none;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 6px;
+  cursor: pointer;
+  width: 200px;
+  height: 45px;
+  border-radius: 25px;
+}
+.cartNUM{
+    background-color: #8E3200;
+    border-radius: 30px;
+    padding: 8px;
+}
+.headerIMG{
+    width: 100%;
+    height: 25rem;
+    z-index: 0;
+    overflow: hidden;
+}
+.headerIMG img{
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
+}
