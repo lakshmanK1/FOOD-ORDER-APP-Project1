@@ -4,7 +4,7 @@ import classes from './Header.module.css'
 import FoodMeals from '../../Assets/meals.jpg'
 
 
-function Header() {
+function Header(props) {
   return (
     <React.Fragment>
     <header className={classes.headerCMP}>
@@ -12,7 +12,7 @@ function Header() {
           <a href='#'><h1>ReactMeals</h1></a>  
         </div>
 
-            <button className={classes.cartBTN}>
+            <button className={classes.cartBTN} onClick={props.onShowCart}>
             <span className={classes.carticon}><CartIcon/></span>
             <span className={classes.cartText}>Your Cart</span>
             <span className={classes.cartNUM}><strong>0</strong></span>
