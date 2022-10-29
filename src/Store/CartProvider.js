@@ -9,13 +9,14 @@ function CartProvider(props) {
         console.log('inside addItemToCartHandle', cartContext);
     }
 
-    let totalAmount = 0;
-    totalAmount += items.price * items.Quantity;
-    const removeItemFromCartHandler = () => {}
+
+    const removeItemFromCartHandler = (id) => {
+        setItems(items.filter((item) => item.id !==id));
+    }
 
     const cartContext = {
         items:items,
-        totalAmount:totalAmount,
+        totalAmount:0,
         addItem:addItemToCartHandler,
         removeItem:removeItemFromCartHandler,
         

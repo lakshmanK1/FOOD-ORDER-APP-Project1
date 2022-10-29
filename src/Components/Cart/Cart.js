@@ -1,10 +1,26 @@
-import React,{useContext} from 'react'
+import React,{useContext, useState} from 'react'
 import classes from './Cart.module.css'
 import Modal from '../UI/Modal'
 import CartContext from '../../Store/CartContext'
 
 function Cart(props) {
+    // const [cartItem, setCartItem] = useState([]);
+    // const [quantity, setQuantity] = useState();
     const cartCntx = useContext(CartContext);
+
+    const cartItemDecrementHandler =(id)=>{
+        // cartCntx.removeItem(cartItem => cartItem.map((item)=>id === item.id ? {...item, Quantity:item.Quantity-1} : item
+        // ));
+    console.log(id,'---------id')
+    cartCntx.removeItem(id);
+    }
+
+    // const cartItemIncrementHandler = (id) => {
+    //     cartCntx.addItem(cartItems => cartItems.map((items)=>id === items.id ? {...items, Quantity:items.Quantity+1} : items
+    //     ));
+    // }
+
+
     const cartItems =<ul className={classes.cartItems}>{cartCntx.items.map((item)=>(
         <li key={item.id} className={classes.cartItemInner}>
         <div>
@@ -15,8 +31,8 @@ function Cart(props) {
             </div>
         </div>
         <div className={classes.actions}>
-            <button>+</button>
-            <button>-</button>
+            <button onClick={()=>cartItemDecrementHandler(item.id)}>-</button>
+            <button onClick={item.onAdd}>+</button>
         </div>
         </li>
     ))
