@@ -11,7 +11,7 @@ function MainMealsItemList(props) {
         <div className={classes.price}>{`Rs: ${props.price}`}</div>
         </div>
         <div>
-          <AddMealsForm/>
+          <AddMealsForm id={props.id} item={props}/>
         </div>
     </li>
   )

@@ -1,3 +1,4 @@
+import CartProvider from './Store/CartProvider';
 import Header from './Components/MainComponents/Header';
 import SummaryAndMenuList from './Components/MainComponents/SummaryAndMenuList';
 import Cart from './Components/Cart/Cart';
@@ -14,11 +15,11 @@ function App() {
     setHandleCart(false);
   }
   return (
-    <div className="App">
+    <CartProvider>
      {handleCart && <Cart onHideCart={hideCartHandler}/>}
       <Header onShowCart={showCartHandler}/>
       <SummaryAndMenuList/>
-    </div>
+    </CartProvider>
   );
 }
 

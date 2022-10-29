@@ -9,7 +9,7 @@ function MealList(props) {
     <Card>
         <ul>
             {props.menuItems.map((food)=>(
-                <MainMealsItemList key={food.id} name={food.name} 
+                <MainMealsItemList id={food.id} key={food.id} name={food.name} 
                 description={food.description} price={food.price}/>
              ))}
         </ul>

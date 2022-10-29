@@ -1,10 +1,16 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import CartIcon from '../Cart/CartIcon'
 import classes from './Header.module.css'
 import FoodMeals from '../../Assets/meals.jpg'
+import CartContext from '../../Store/CartContext'
 
 
 function Header(props) {
+  const handleUseContext = useContext(CartContext);
+  let Quantity  = 0;
+  handleUseContext.items.forEach((item)=>{
+    Quantity = Quantity + Number(item.Quantity);
+  })
   return (
     <React.Fragment>
     <header className={classes.headerCMP}>
@@ -14,8 +20,9 @@ function Header(props) {
 
             <button className={classes.cartBTN} onClick={props.onShowCart}>
             <span className={classes.carticon}><CartIcon/></span>
+            {/* <span className={classes.cartText}>{handleUseContext.message}</span> */}
             <span className={classes.cartText}>Your Cart</span>
-            <span className={classes.cartNUM}><strong>0</strong></span>
+            <span className={classes.cartNUM}><strong>{Quantity}</strong></span>
             </button>
     
     </header>
