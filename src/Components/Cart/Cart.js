@@ -39,9 +39,10 @@ function Cart(props) {
     }</ul>
 
     const prices = cartCntx.items.map((item) => item.price);
+    const quantity = cartCntx.items.map((quan) => quan.Quantity);
     let total = 0;
     for (var i = 0; i < prices.length; i++) {
-    total += prices[i];
+    total += prices[i] * quantity[i];
     }
 
   const totalAmount = parseInt(total);
