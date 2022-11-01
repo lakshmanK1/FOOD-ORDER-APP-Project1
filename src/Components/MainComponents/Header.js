@@ -15,12 +15,11 @@ function Header(props) {
     <React.Fragment>
     <header className={classes.headerCMP}>
         <div className={classes.siteName}>
-          <a href='#'><h1>ReactMeals</h1></a>  
+          <a href='http://localhost:3000/'><h1>ReactMeals</h1></a>  
         </div>
 
             <button className={classes.cartBTN} onClick={props.onShowCart}>
             <span className={classes.carticon}><CartIcon/></span>
-            {/* <span className={classes.cartText}>{handleUseContext.message}</span> */}
             <span className={classes.cartText}>Your Cart</span>
             <span className={classes.cartNUM}><strong>{Quantity}</strong></span>
             </button>

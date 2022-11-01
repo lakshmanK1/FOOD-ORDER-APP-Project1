@@ -6,24 +6,23 @@ function CartProvider(props) {
 
     const addItemToCartHandler = (item) => {
         setItems([...items,item]);
-        console.log('inside addItemToCartHandle', cartContext);
+        console.log('inside addItemToCartHandle', CartContext);
     }
 
 
     const removeItemFromCartHandler = (id) => {
-        setItems(items.filter((item) => item.id !==id));
-    }
+        setItems(items.filter((item) => item.id !== id));
+    };
 
     const cartContext = {
         items:items,
-        totalAmount:0,
-        addItem:addItemToCartHandler,
-        removeItem:removeItemFromCartHandler,
+        addItem: addItemToCartHandler,
+        removeItem: removeItemFromCartHandler
         
     }
   return (
     <CartContext.Provider value={cartContext}>
-        {console.log('inside CartContextProvider', cartContext)}
+        {console.log('inside CartContextProvider', CartContext)}
         {props.children}
     </CartContext.Provider>
   )
