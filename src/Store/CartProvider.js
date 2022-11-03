@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import CartContext from './CartContext'
 
 function CartProvider(props) {
+    
     const [items, setItems] = useState([]);
 
     const addItemToCartHandler = (item) => {

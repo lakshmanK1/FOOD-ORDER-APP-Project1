@@ -1,76 +1,51 @@
-import React, { useContext,  useState} from "react";
-import CartContext from "../../Store/CartContext";
-import Modal from '../UI/Modal'
-import classes from "./Cart.module.css";
+import { useContext } from 'react';
+
+import Modal from '../UI/Modal';
+import CartItem from './CartItem';
+import classes from './Cart.module.css';
+import CartContext from '../../store/cart-context';
 
 const Cart = (props) => {
-  const [cartItem, setCartItem] = useState([]);
-  const [quantity, setQuantity] = useState();
-  const cartcntx = useContext(CartContext);
+  const cartCtx = useContext(CartContext);
 
-  const cartItemDecrementHandler = (id) => {
-   cartcntx.removeItem(id);
-   setCartItem(cartItem => 
-      cartItem.map((item) => id === item.id ? {...item, Quantity:item.Quantity - 1}:item
-      )
-    );
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const hasItems = cartCtx.items.length > 0;
+
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
   };
 
-  const cartItemIncrementHandler = (id) => {
-    // setQuantity(qty);
-    cartcntx.addItem(cartItems => 
-        cartItems.map((items) => id === items.id ? {...items, Quantity:items.Quantity + 1}:items
-        )
-    );  
-    // setCartItem(cartItems => 
-    //   cartItems.map((items) => id === items.id ? {...items, quantity:items.quantity + 1}:items
-    //   )
-    // );
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, amount: 1 });
   };
 
   const cartItems = (
-    <ul className={classes.cartItems}>
-      {cartcntx.items.map((item) => (
-        <li className={classes.cartItemInner}>
-          <div>
-            <h2>{item.name}</h2>
-            <div className={classes.summary}>
-              <span className={classes.price}>Rs: {item.price}</span>
-              <span className={classes.quantity}>x {item.Quantity}</span>
-            </div>
-          </div>
-          <div className={classes.actions}>
-            <button onClick={() => cartItemDecrementHandler(item.id)}>-</button>
-            <button onClick={() => cartItemIncrementHandler(parseInt(item.id))}>+</button>
-          </div>
-        </li>
+    <ul className={classes['cart-items']}>
+      {cartCtx.items.map((item) => (
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddHandler.bind(null, item)}
+        />
       ))}
     </ul>
   );
 
-  const prices = cartcntx.items.map((item) => item.price);
-  const Totalquantity = cartcntx.items.map((item) => item.Quantity);
-  let total = 0;
-  for (var i = 0; i < prices.length; i++) {
-    total += prices[i] * Totalquantity[i];
-  }
-
-  const totalAmount = parseInt(total.toFixed(2));
-
   return (
-    <Modal onHideCart={props.onHideCart}>
+    <Modal onClose={props.onClose}>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>Rs: {totalAmount}</span>
+        <span>{totalAmount}</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes.buttonAlt} onClick={props.onHideCart}>
+        <button className={classes['button--alt']} onClick={props.onClose}>
           Close
         </button>
-        <button className={classes.button} onClick={props.onHideCart}>
-          Order
-        </button>
+        {hasItems && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
