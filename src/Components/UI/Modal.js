@@ -1,31 +1,32 @@
-import React,{Fragment} from 'react'
-import  ReactDOM from 'react-dom'
-import classes from './Modal.module.css'
+import { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 
-const BacKDropCmp = (props) => {
-    return (
-    <div className={classes.backdrop} onClick={props.onHideCart}/>
-    );
-}
+import classes from './Modal.module.css';
 
-const ModalCmp = (props) => {
-    return (
+const Backdrop = (props) => {
+  return <div className={classes.backdrop} onClick={props.onClose}/>;
+};
+
+const ModalOverlay = (props) => {
+  return (
     <div className={classes.modal}>
-        <div className={classes.content}>{props.children}</div>
+      <div className={classes.content}>{props.children}</div>
     </div>
-    );
-}
+  );
+};
 
-const backDropID = document.getElementById('backdrop');
+const portalElement = document.getElementById('overlays');
 
-function Modal(props) {
-
+const Modal = (props) => {
   return (
     <Fragment>
-        {ReactDOM.createPortal(<BacKDropCmp onHideCart={props.onHideCart}/>, backDropID)}
-        {ReactDOM.createPortal(<ModalCmp>{props.children}</ModalCmp>, backDropID)}
+      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
+      {ReactDOM.createPortal(
+        <ModalOverlay>{props.children}</ModalOverlay>,
+        portalElement
+      )}
     </Fragment>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
